@@ -1,14 +1,15 @@
 //
-//  ViewController.swift
+//  ItemsViewController.swift
 //  Internship
 //
 //  Created by Veronika on 24.08.2023.
+//  
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    
+final class ItemsViewController: UIViewController {
+	private let output: ItemsViewOutput
     private let itemsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -18,6 +19,16 @@ class ViewController: UIViewController {
         return cv
     }()
 
+    init(output: ItemsViewOutput) {
+        self.output = output
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -26,8 +37,10 @@ class ViewController: UIViewController {
     }
 }
 
-private extension ViewController {
+private extension ItemsViewController {
     func setupViews() {
+        view.backgroundColor = .white
+        itemsCollectionView.backgroundColor = .white
         view.addSubview(itemsCollectionView)
     }
     
@@ -47,7 +60,7 @@ private extension ViewController {
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension ItemsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 30
     }
@@ -55,7 +68,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemsCollectionViewCell
-        cell.backgroundColor = .red
         cell.configureCellWith(imageName: "Image", title: "Iphone", price: "55000", location: "Moscow", date: "23/08/23")
         return cell
     }
@@ -63,4 +75,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width / 2.35, height: view.frame.height / 3.47)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(24.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output.didTapItem()
+    }
 }
+
+extension ItemsViewController: ItemsViewInput {
+}
+
