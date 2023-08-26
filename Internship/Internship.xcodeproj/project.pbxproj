@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		945EAC162A9A3EC900B03013 /* OneItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945EAC152A9A3EC900B03013 /* OneItemView.swift */; };
 		949FCA7E2A97A2B200CDFE5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FCA7D2A97A2B200CDFE5D /* AppDelegate.swift */; };
 		949FCA802A97A2B200CDFE5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949FCA7F2A97A2B200CDFE5D /* SceneDelegate.swift */; };
 		949FCA852A97A2B200CDFE5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 949FCA832A97A2B200CDFE5D /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		945EAC152A9A3EC900B03013 /* OneItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneItemView.swift; sourceTree = "<group>"; };
 		949FCA7A2A97A2B200CDFE5D /* Internship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Internship.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		949FCA7D2A97A2B200CDFE5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		949FCA7F2A97A2B200CDFE5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				949FCA922A97AA6500CDFE5D /* ItemsCollectionViewCell.swift */,
+				945EAC152A9A3EC900B03013 /* OneItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				949FCA7E2A97A2B200CDFE5D /* AppDelegate.swift in Sources */,
 				949FCA9D2A97CF0F00CDFE5D /* ItemsViewController.swift in Sources */,
 				949FCAA02A97CF0F00CDFE5D /* ItemsContainer.swift in Sources */,
+				945EAC162A9A3EC900B03013 /* OneItemView.swift in Sources */,
 				949FCA802A97A2B200CDFE5D /* SceneDelegate.swift in Sources */,
 				949FCAAF2A97D16300CDFE5D /* OneItemContainer.swift in Sources */,
 				949FCA9E2A97CF0F00CDFE5D /* ItemsProtocols.swift in Sources */,
