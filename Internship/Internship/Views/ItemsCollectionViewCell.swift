@@ -113,6 +113,13 @@ private extension ItemsCollectionViewCell {
 }
 
 extension ItemsCollectionViewCell {
+    func configureCell(with advInfo: AdvertisementItems) {
+        itemTitleLabel.text = advInfo.title
+        itemPriceLabel.text = advInfo.price
+        itemLocationLabel.text = advInfo.location
+        itemCreationDateLabel.text = advInfo.createdDate
+    }
+    
     func configureCellWith(imageName: String, title: String, price: String, location: String, date: String) {
         itemImage.image = UIImage(named: imageName)
         itemTitleLabel.text = title

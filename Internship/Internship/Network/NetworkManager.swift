@@ -11,22 +11,22 @@ class NetworkManager {
     static let shared = NetworkManager()
     init() { }
     
-    let url = URL(string: "https://www.avito.st/s/interns-ios/main-page.json")
          
     func fetchAdvertisments() async -> (adv: Advertisment?, error: String?) {
+        let url = URLBuilderImpl()
+            .addScheme(scheme: "https")
+            .addHost(host: "www.avito.st")
+            .addPath("/s/interns-ios/main-page.json")
+            .build()
+        
         guard let urlResult = url else {
             return (nil, "no url")
         }
-        
-        let dataTask = URLSession.shared.dataTask(with: URLRequest(url: urlResult))
     
         guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
             return (nil, "error")
         }
 
-//        guard let response = dataTask.response as? HTTPURLResponse, (200 ... 299).contains(response.statusCode) else {
-//            return (nil, "error")
-//        }
 
         do {
             let advertisment = try JSONDecoder().decode(Advertisment.self, from: data)
@@ -35,4 +35,6 @@ class NetworkManager {
             return (nil, "error")
         }
     }
+    
 }
+
