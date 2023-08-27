@@ -28,7 +28,14 @@ extension ItemsPresenter: ItemsViewOutput {
     func didTapItem() {
         router.openOneItemScreen()
     }
+    
+    func loadData() {
+        interactor.fetchItmsData()
+    }
 }
 
 extension ItemsPresenter: ItemsInteractorOutput {
+    func setFetchedData(adv: Advertisment) {
+        view?.printData(adv: adv)
+    }
 }

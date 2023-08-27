@@ -34,6 +34,7 @@ final class ItemsViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupCollectionView()
+        output.loadData()
     }
 }
 
@@ -86,5 +87,8 @@ extension ItemsViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 }
 
 extension ItemsViewController: ItemsViewInput {
+    func printData(adv: Advertisment) {
+        print(adv)
+    }
 }
 

@@ -16,16 +16,20 @@ protocol ItemsModuleOutput: AnyObject {
 }
 
 protocol ItemsViewInput: AnyObject {
+    func printData(adv: Advertisment)
 }
 
 protocol ItemsViewOutput: AnyObject {
     func didTapItem()
+    func loadData()
 }
 
 protocol ItemsInteractorInput: AnyObject {
+    func fetchItmsData()
 }
 
 protocol ItemsInteractorOutput: AnyObject {
+    func setFetchedData(adv: Advertisment)
 }
 
 protocol ItemsRouterInput: AnyObject {
