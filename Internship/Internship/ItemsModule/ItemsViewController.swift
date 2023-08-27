@@ -10,14 +10,26 @@ import UIKit
 
 final class ItemsViewController: UIViewController {
 	private let output: ItemsViewOutput
-    private let itemsCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(ItemsCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        return cv
+    
+    private lazy var itemsCollectionView: UICollectionView = {
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        collection.register(cellType: ItemsCollectionViewCell.self)
+        
+        collection.showsVerticalScrollIndicator = false
+        return collection
     }()
+    
+    private lazy var itemsCollectionViewAdapter =  ItemCollectionAdapter(itemsCollectionView)
+    
+//    private let itemsCollectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        cv.translatesAutoresizingMaskIntoConstraints = false
+//        cv.register(ItemsCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+//        return cv
+//    }()
 
     init(output: ItemsViewOutput) {
         self.output = output
@@ -88,6 +100,7 @@ extension ItemsViewController: UICollectionViewDelegateFlowLayout, UICollectionV
 
 extension ItemsViewController: ItemsViewInput {
     func printData(adv: Advertisment) {
+//        itemsCollectionViewAdapter.configure(adv)
         print(adv)
     }
 }

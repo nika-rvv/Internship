@@ -113,7 +113,7 @@ private extension ItemsCollectionViewCell {
 }
 
 extension ItemsCollectionViewCell {
-    func configureCell(with advInfo: AdvertisementItems) {
+    func configureCell(with advInfo: ItemInfo) {
         itemTitleLabel.text = advInfo.title
         itemPriceLabel.text = advInfo.price
         itemLocationLabel.text = advInfo.location
