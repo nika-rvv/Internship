@@ -15,6 +15,6 @@ final class ItemsContentProviderImpl: ItemsContentProvider {
     }
     
     func appendItem(_ items: [AdvertisementItems]) {
-        self.items.insert(contentsOf: items, at: 0)
+        self.items.append(contentsOf: items)
     }
 }
