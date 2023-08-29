@@ -8,8 +8,8 @@
 import UIKit
 
 final class OneItemView: UIView {
-    private let oneItemImage: UIImageView = {
-        let image = UIImageView()
+    private let oneItemImage: KingfisherImage = {
+        let image = KingfisherImage(placeHolderType: .item)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleToFill
         return image
@@ -97,8 +97,8 @@ private extension OneItemView {
 }
 
 extension OneItemView {
-    func configureViewWith(image: String, data: OneItemInfo) {
-        oneItemImage.image = UIImage(named: image)
+    func configureViewWith(data: OneItemInfo) {
+        oneItemImage.setImage(url: URL(string: "\(data.imageURL)"))
         labelViews[0].text = data.title
         labelViews[1].text = data.price
         labelViews[2].text = data.location

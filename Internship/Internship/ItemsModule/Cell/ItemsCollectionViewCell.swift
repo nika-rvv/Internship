@@ -17,8 +17,8 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
 //        return stackView
 //    }()
     
-    private let itemImage: UIImageView = {
-        let image = UIImageView()
+    private let itemImage: KingfisherImage = {
+        let image = KingfisherImage(placeHolderType: .item)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 4
         image.clipsToBounds = true
@@ -114,17 +114,10 @@ private extension ItemsCollectionViewCell {
 
 extension ItemsCollectionViewCell {
     func configureCell(with advInfo: ItemInfo) {
+        itemImage.setImage(url: URL(string: advInfo.imageURL))
         itemTitleLabel.text = advInfo.title
         itemPriceLabel.text = advInfo.price
         itemLocationLabel.text = advInfo.location
         itemCreationDateLabel.text = advInfo.createdDate
-    }
-    
-    func configureCellWith(imageName: String, title: String, price: String, location: String, date: String) {
-        itemImage.image = UIImage(named: imageName)
-        itemTitleLabel.text = title
-        itemPriceLabel.text = price
-        itemLocationLabel.text = location
-        itemCreationDateLabel.text = date
     }
 }

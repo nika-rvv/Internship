@@ -86,9 +86,9 @@ private extension ItemCollectionAdapter {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(250))
+            heightDimension: .estimated(290))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
-        group.interItemSpacing = .fixed(spacing)
+        group.interItemSpacing = .fixed(spacing * 2)
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)

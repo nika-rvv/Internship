@@ -52,15 +52,13 @@ private extension OneItemViewController {
             oneItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             oneItemView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-//        oneItemView.configureViewWith(image: "Image", data: data)
     }
 }
 
 extension OneItemViewController: OneItemViewInput {
     func setFetchedData(itemInfo: OneItemInfo) {
         print("fetched data:\(itemInfo)")
-        oneItemView.configureViewWith(image: "Image", data: itemInfo)
+        oneItemView.configureViewWith(data: itemInfo)
     }
 }
 

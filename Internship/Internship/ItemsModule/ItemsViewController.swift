@@ -46,9 +46,9 @@ private extension ItemsViewController {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            itemsCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            itemsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            itemsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            itemsCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            itemsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            itemsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             itemsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
