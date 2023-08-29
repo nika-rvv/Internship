@@ -104,10 +104,40 @@ private extension ItemCollectionAdapter {
 }
 
 extension ItemCollectionAdapter: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath
-    ) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let section = dataSource.snapshot().sectionIdentifiers[indexPath.section]
         print("tapped \(section)")
 //        didTapOnEventsAction?(section.sectionType, indexPath.item)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return itemsInfo.count
+    }
+    
+    
 }
+
+//extension ItemsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 30
+//    }
+//
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemsCollectionViewCell
+//        cell.configureCellWith(imageName: "Image", title: "Iphone", price: "55000", location: "Moscow", date: "23/08/23")
+//        return cell
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: view.frame.width / 2.35, height: view.frame.height / 3.47)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return CGFloat(24.0)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        output.didTapItem()
+//    }
+//}

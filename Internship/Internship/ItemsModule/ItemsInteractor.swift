@@ -11,15 +11,26 @@ import Foundation
 final class ItemsInteractor {
     weak var output: ItemsInteractorOutput?
     private let itemsNetworkManager: NetworkManager?
+    private let contentProvider: ItemsContentProvider?
+    private let dataConverter: DataConverter?
     
-    init(output: ItemsInteractorOutput? = nil, itemsNetworkManager: NetworkManager?) {
-        self.output = output
+    init(itemsNetworkManager: NetworkManager, contentProvider: ItemsContentProvider, dataConverter: DataConverter) {
         self.itemsNetworkManager = itemsNetworkManager
+        self.contentProvider = contentProvider
+        self.dataConverter = dataConverter
+    }
+    
+    func updateItems(with itemInfo: [ItemInfo]?) async {
+        if let itemInfo = itemInfo {
+            await MainActor.run {
+                self.output?.setFetchedData(itemsInfo: itemInfo)
+            }
+        }
     }
 }
 
 extension ItemsInteractor: ItemsInteractorInput {
-    func fetchItmsData() {
+    func fetchItemsData() {
         Task {
             let adInfo = await itemsNetworkManager?.fetchAdvertisments()
             
@@ -31,10 +42,9 @@ extension ItemsInteractor: ItemsInteractorInput {
                 
                 return
             }
-            
-            await MainActor.run {
-                self.output?.setFetchedData(adv: data)
-            }
+            let itemsData = dataConverter?.convertData(from: data.advertisements)
+            self.contentProvider?.appendItem(data.advertisements)
+            await updateItems(with: itemsData)
         }
     }
 }

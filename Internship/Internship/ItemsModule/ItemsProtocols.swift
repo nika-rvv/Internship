@@ -16,7 +16,7 @@ protocol ItemsModuleOutput: AnyObject {
 }
 
 protocol ItemsViewInput: AnyObject {
-    func printData(adv: Advertisment)
+    func printData(adv: [ItemInfo])
 }
 
 protocol ItemsViewOutput: AnyObject {
@@ -25,11 +25,11 @@ protocol ItemsViewOutput: AnyObject {
 }
 
 protocol ItemsInteractorInput: AnyObject {
-    func fetchItmsData()
+    func fetchItemsData()
 }
 
 protocol ItemsInteractorOutput: AnyObject {
-    func setFetchedData(adv: Advertisment)
+    func setFetchedData(itemsInfo: [ItemInfo])
 }
 
 protocol ItemsRouterInput: AnyObject {

@@ -16,7 +16,9 @@ final class ItemsContainer {
 	static func assemble(with context: ItemsContext) -> ItemsContainer {
         let router = ItemsRouter()
         let itemsNetworkManager = NetworkManager()
-        let interactor = ItemsInteractor(itemsNetworkManager: itemsNetworkManager)
+        let itemsContentProvider = ItemsContentProviderImpl()
+        let dataConverter = DataConverterImpl()
+        let interactor = ItemsInteractor(itemsNetworkManager: itemsNetworkManager, contentProvider: itemsContentProvider, dataConverter: dataConverter)
         let presenter = ItemsPresenter(router: router, interactor: interactor)
 		let viewController = ItemsViewController(output: presenter)
 

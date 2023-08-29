@@ -30,12 +30,12 @@ extension ItemsPresenter: ItemsViewOutput {
     }
     
     func loadData() {
-        interactor.fetchItmsData()
+        interactor.fetchItemsData()
     }
 }
 
 extension ItemsPresenter: ItemsInteractorOutput {
-    func setFetchedData(adv: Advertisment) {
-        view?.printData(adv: adv)
+    func setFetchedData(itemsInfo: [ItemInfo]) {
+        view?.printData(adv: itemsInfo)
     }
 }
