@@ -11,6 +11,9 @@ final class ItemCollectionAdapter: NSObject {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ItemInfo>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ItemInfo>
     typealias Layout = UICollectionViewCompositionalLayout
+    typealias TapOnItemAction = (String) -> Void
+    
+    private var didTapOnItemAction: TapOnItemAction?
     
     enum Section {
         case main
@@ -26,6 +29,7 @@ final class ItemCollectionAdapter: NSObject {
     init(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
         super.init()
+        collectionView.delegate = self
         collectionView.collectionViewLayout = collectionViewLayout
     }
     
@@ -37,6 +41,10 @@ final class ItemCollectionAdapter: NSObject {
     func addSection(_ info: ItemInfo) {
         self.itemsInfo.append(info)
         applySnapshot(animated: true)
+    }
+    
+    func setTapAction(_ action: @escaping TapOnItemAction) {
+        self.didTapOnItemAction = action
     }
 }
 
@@ -92,9 +100,9 @@ private extension ItemCollectionAdapter {
 
 extension ItemCollectionAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let section = dataSource.snapshot().sectionIdentifiers[indexPath.section]
-        print("tapped \(section)")
-        //        didTapOnEventsAction?(section.sectionType, indexPath.item)
+        print("tapped \(indexPath.item)")
+        
+        didTapOnItemAction?(itemsInfo[indexPath.item].id)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

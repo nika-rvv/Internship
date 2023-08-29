@@ -10,7 +10,34 @@ import Foundation
 
 final class OneItemInteractor {
 	weak var output: OneItemInteractorOutput?
+    let itemId: String
+    private let itemNetworkManager: NetworkManager?
+    private let dataConverter: DataConverter?
+    
+    init(itemId: String, itemNetworkManager: NetworkManager?, dataConverter: DataConverter?) {
+        self.itemId = itemId
+        self.itemNetworkManager = itemNetworkManager
+        self.dataConverter = dataConverter
+    }
 }
 
 extension OneItemInteractor: OneItemInteractorInput {
+    func fetchOneItemData() {
+        Task {
+            let adInfo = await itemNetworkManager?.fetchItemData(with: itemId)
+            
+            if adInfo?.error != nil {
+                print("error")
+            }
+            
+            guard let data = adInfo?.data, let itemData = dataConverter?.convertDataForOneItem(from: data) else {
+                
+                return
+            }
+            
+            await MainActor.run {
+                output?.loadData(info: itemData)
+            }
+        }
+    }
 }

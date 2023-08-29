@@ -20,7 +20,7 @@ protocol ItemsViewInput: AnyObject {
 }
 
 protocol ItemsViewOutput: AnyObject {
-    func didTapItem()
+    func didTapItem(at index: String)
     func loadData()
 }
 
@@ -33,5 +33,5 @@ protocol ItemsInteractorOutput: AnyObject {
 }
 
 protocol ItemsRouterInput: AnyObject {
-    func openOneItemScreen()
+    func openOneItemScreen(at index: String)
 }

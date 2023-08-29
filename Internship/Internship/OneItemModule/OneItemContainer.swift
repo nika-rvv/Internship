@@ -15,9 +15,13 @@ final class OneItemContainer {
 
 	static func assemble(with context: OneItemContext) -> OneItemContainer {
         let router = OneItemRouter()
-        let interactor = OneItemInteractor()
+        let itemId = context.itemId
+        let networkManager = NetworkManager()
+        let dataConverter = DataConverterImpl()
+        let interactor = OneItemInteractor(itemId: itemId, itemNetworkManager: networkManager, dataConverter: dataConverter)
         let presenter = OneItemPresenter(router: router, interactor: interactor)
 		let viewController = OneItemViewController(output: presenter)
+
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
@@ -36,4 +40,5 @@ final class OneItemContainer {
 
 struct OneItemContext {
 	weak var moduleOutput: OneItemModuleOutput?
+    let itemId: String
 }

@@ -29,12 +29,6 @@ final class URLBuilderImpl: URLBuilder {
         return self
     }
     
-//    func addQuery(name: String, value: String) -> URLBuilderImpl {
-//        let query = URLQueryItem(name: name, value: value)
-//        urlComponents?.queryItems?.append(query)
-//        return self
-//    }
-    
     func build() -> URL? {
         return urlComponents?.url
     }

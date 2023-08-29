@@ -13,8 +13,8 @@ final class ItemsRouter {
 }
 
 extension ItemsRouter: ItemsRouterInput {
-    func openOneItemScreen() {
-        let context = OneItemContext()
+    func openOneItemScreen(at index: String) {
+        let context = OneItemContext(itemId: index)
         let container = OneItemContainer.assemble(with: context)
         self.viewController?.navigationController?.pushViewController(container.viewController, animated: true)
     }

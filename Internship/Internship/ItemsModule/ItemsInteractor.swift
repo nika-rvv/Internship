@@ -42,7 +42,7 @@ extension ItemsInteractor: ItemsInteractorInput {
                 
                 return
             }
-            let itemsData = dataConverter?.convertData(from: data.advertisements)
+            let itemsData = dataConverter?.convertDataForItems(from: data.advertisements)
             self.contentProvider?.appendItem(data.advertisements)
             await updateItems(with: itemsData)
         }

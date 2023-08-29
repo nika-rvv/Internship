@@ -29,6 +29,7 @@ final class ItemsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupActions()
         output.loadData()
     }
 }
@@ -50,6 +51,12 @@ private extension ItemsViewController {
             itemsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             itemsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    func setupActions() {
+        itemsCollectionViewAdapter.setTapAction { [weak self] index in
+            self?.output.didTapItem(at: index)
+        }
     }
 }
 

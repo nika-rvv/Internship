@@ -97,10 +97,15 @@ private extension OneItemView {
 }
 
 extension OneItemView {
-    func configureViewWith(image: String, data: [String]) {
+    func configureViewWith(image: String, data: OneItemInfo) {
         oneItemImage.image = UIImage(named: image)
-        for i in 0..<data.count {
-            labelViews[i].text = data[i]
-        }
+        labelViews[0].text = data.title
+        labelViews[1].text = data.price
+        labelViews[2].text = data.location
+        labelViews[3].text = data.createdDate
+        labelViews[5].text = data.description
+        labelViews[7].text = data.email
+        labelViews[8].text = data.phoneNumber
+        labelViews[9].text = data.address
     }
 }

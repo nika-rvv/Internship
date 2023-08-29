@@ -25,7 +25,13 @@ extension OneItemPresenter: OneItemModuleInput {
 }
 
 extension OneItemPresenter: OneItemViewOutput {
+    func getOneItemData() {
+        interactor.fetchOneItemData()
+    }
 }
 
 extension OneItemPresenter: OneItemInteractorOutput {
+    func loadData(info: OneItemInfo) {
+        view?.setFetchedData(itemInfo: info)
+    }
 }

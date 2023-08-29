@@ -38,6 +38,7 @@ final class OneItemViewController: UIViewController {
 		super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+        output.getOneItemData()
 	}
 }
 
@@ -52,9 +53,14 @@ private extension OneItemViewController {
             oneItemView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        oneItemView.configureViewWith(image: "Image", data: data)
+//        oneItemView.configureViewWith(image: "Image", data: data)
     }
 }
 
 extension OneItemViewController: OneItemViewInput {
+    func setFetchedData(itemInfo: OneItemInfo) {
+        print("fetched data:\(itemInfo)")
+        oneItemView.configureViewWith(image: "Image", data: itemInfo)
+    }
 }
+

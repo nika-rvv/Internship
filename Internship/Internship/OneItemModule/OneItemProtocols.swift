@@ -16,15 +16,19 @@ protocol OneItemModuleOutput: AnyObject {
 }
 
 protocol OneItemViewInput: AnyObject {
+    func setFetchedData(itemInfo: OneItemInfo)
 }
 
 protocol OneItemViewOutput: AnyObject {
+    func getOneItemData()
 }
 
 protocol OneItemInteractorInput: AnyObject {
+    func fetchOneItemData()
 }
 
 protocol OneItemInteractorOutput: AnyObject {
+    func loadData(info: OneItemInfo)
 }
 
 protocol OneItemRouterInput: AnyObject {

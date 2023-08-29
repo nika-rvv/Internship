@@ -25,8 +25,8 @@ extension ItemsPresenter: ItemsModuleInput {
 }
 
 extension ItemsPresenter: ItemsViewOutput {
-    func didTapItem() {
-        router.openOneItemScreen()
+    func didTapItem(at index: String) {
+        router.openOneItemScreen(at: index)
     }
     
     func loadData() {

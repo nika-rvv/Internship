@@ -36,5 +36,28 @@ class NetworkManager {
         }
     }
     
+    func fetchItemData(with index: String) async -> (data: OneAdvertismentItem?, error: String?) {
+        let url = URLBuilderImpl()
+            .addScheme(scheme: "https")
+            .addHost(host: "www.avito.st")
+            .addPath("/s/interns-ios/details/" + index + ".json")
+            .build()
+        
+        guard let urlResult = url else {
+            return (nil, "no url")
+        }
+    
+        guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
+            return (nil, "error")
+        }
+
+
+        do {
+            let info = try JSONDecoder().decode(OneAdvertismentItem.self, from: data)
+            return (info, nil)
+        } catch {
+            return (nil, "error")
+        }
+    }
 }
 
