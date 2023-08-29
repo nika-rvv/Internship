@@ -12,20 +12,20 @@ protocol OneItemModuleInput {
 	var moduleOutput: OneItemModuleOutput? { get }
 }
 
-protocol OneItemModuleOutput: class {
+protocol OneItemModuleOutput: AnyObject {
 }
 
-protocol OneItemViewInput: class {
+protocol OneItemViewInput: AnyObject {
 }
 
-protocol OneItemViewOutput: class {
+protocol OneItemViewOutput: AnyObject {
 }
 
-protocol OneItemInteractorInput: class {
+protocol OneItemInteractorInput: AnyObject {
 }
 
-protocol OneItemInteractorOutput: class {
+protocol OneItemInteractorOutput: AnyObject {
 }
 
-protocol OneItemRouterInput: class {
+protocol OneItemRouterInput: AnyObject {
 }
