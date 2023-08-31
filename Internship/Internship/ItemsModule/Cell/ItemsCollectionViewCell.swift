@@ -68,6 +68,14 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         return nil
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemTitleLabel.text = ""
+        itemPriceLabel.text = ""
+        itemLocationLabel.text = ""
+        itemCreationDateLabel.text = ""
+    }
 }
 
 private extension ItemsCollectionViewCell {
@@ -77,12 +85,6 @@ private extension ItemsCollectionViewCell {
         self.addSubview(itemPriceLabel)
         self.addSubview(itemLocationLabel)
         self.addSubview(itemCreationDateLabel)
-//
-//        itemStackView.addArrangedSubview(itemImage)
-//        itemStackView.addArrangedSubview(itemTitleLabel)
-//        itemStackView.addArrangedSubview(itemPriceLabel)
-//        itemStackView.addArrangedSubview(itemLocationLabel)
-//        itemStackView.addArrangedSubview(itemCreationDateLabel)
     }
     
     func setupConstraints() {

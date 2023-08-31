@@ -22,11 +22,13 @@ class NetworkManager {
         guard let urlResult = url else {
             return (nil, NetworkResponse.wrongURL.rawValue)
         }
-    
-        guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
-            return (nil, NetworkResponse.noData.rawValue)
+        
+        let urlSession = URLSession(configuration: .ephemeral)
+        
+        let result = try? await urlSession.data(from: urlResult)
+        guard let data = result?.0 else {
+            return (nil, NetworkResponse.noConnection.rawValue)
         }
-
 
         do {
             let advertisment = try JSONDecoder().decode(Advertisment.self, from: data)
@@ -34,6 +36,7 @@ class NetworkManager {
         } catch {
             return (nil, NetworkResponse.unableToDecode.rawValue)
         }
+        
     }
     
     func fetchItemData(with index: String) async -> (data: OneAdvertismentItem?, error: String?) {
@@ -48,7 +51,7 @@ class NetworkManager {
         }
     
         guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
-            return (nil, NetworkResponse.noData.rawValue)
+            return (nil, NetworkResponse.noConnection.rawValue)
         }
 
 

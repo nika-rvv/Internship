@@ -11,4 +11,5 @@ enum NetworkResponse: String {
     case wrongURL = "Неверный url"
     case noData = "Ответ возвращен без данных для декодирования"
     case unableToDecode = "Мы не смогли расшифровать ответ"
+    case noConnection = "Нет интернет-соединения"
 }

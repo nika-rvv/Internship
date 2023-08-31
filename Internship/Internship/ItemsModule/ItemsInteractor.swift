@@ -35,11 +35,15 @@ extension ItemsInteractor: ItemsInteractorInput {
             let adInfo = await itemsNetworkManager?.fetchAdvertisments()
             
             if let responseError = adInfo?.error {
-                output?.showEror(error: responseError)
+                await MainActor.run {
+                    output?.showEror(error: responseError)
+                }
             }
             
             guard let data = adInfo?.adv  else {
-                
+                await MainActor.run {
+                    output?.showEror(error: NetworkResponse.noData.rawValue)
+                }
                 return
             }
             let itemsData = dataConverter?.convertDataForItems(from: data.advertisements)
