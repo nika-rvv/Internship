@@ -15,6 +15,8 @@ final class ItemsViewController: UIViewController {
     
     private lazy var itemsCollectionViewAdapter =  ItemCollectionAdapter(itemsCollectionView)
     
+    private let errorView = ErrorView()
+    
     init(output: ItemsViewOutput) {
         self.output = output
         
@@ -29,6 +31,7 @@ final class ItemsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupErrorView()
         setupActions()
         output.loadData()
     }
@@ -58,29 +61,47 @@ private extension ItemsViewController {
             self?.output.didTapItem(at: index)
         }
     }
+    
+    func setupErrorView() {
+        view.addSubview(errorView)
+        
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 }
 
 extension ItemsViewController: ItemsViewInput {
     func setData(info: [ItemInfo]) {
+        errorView.isHidden = true
         itemsCollectionViewAdapter.configure(info)
     }
     
     func showLoaderView() {
+        errorView.isHidden = true
         itemsCollectionView.isHidden = true
         self.showLoader(animationName: JSONEnum.loadingAnimation.rawValue)
     }
     
     func hideLoaderView() {
+        errorView.isHidden = true
         itemsCollectionView.isHidden = false
         self.hideLoader()
     }
     
     func showErrorAlert(error: String) {
-        let alert = UIAlertController(title: "Ошибка",
-                                      message: "\(error)",
-                                      preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "ОК", style: .default))
-        self.present(alert, animated: true)
+        itemsCollectionView.isHidden = true
+        errorView.isHidden = false
+        errorView.configureView(with: error)
+//        let alert = UIAlertController(title: "Ошибка",
+//                                      message: "\(error)",
+//                                      preferredStyle: .actionSheet)
+//        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+//        self.present(alert, animated: true)
     }
 }
 

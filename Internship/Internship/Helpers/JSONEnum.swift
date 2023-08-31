@@ -9,4 +9,5 @@ import Foundation
 
 enum JSONEnum: String, CodingKey {
     case loadingAnimation = "loadingAnimation"
+    case errorAnimation = "errorAnimation"
 }
