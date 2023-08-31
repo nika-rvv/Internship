@@ -31,11 +31,13 @@ extension ItemsPresenter: ItemsViewOutput {
     
     func loadData() {
         interactor.fetchItemsData()
+        view?.showLoaderView()
     }
 }
 
 extension ItemsPresenter: ItemsInteractorOutput {
     func setFetchedData(itemsInfo: [ItemInfo]) {
-        view?.printData(adv: itemsInfo)
+        view?.setData(info: itemsInfo)
+        view?.hideLoaderView()
     }
 }

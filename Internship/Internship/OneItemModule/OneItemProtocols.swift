@@ -17,6 +17,8 @@ protocol OneItemModuleOutput: AnyObject {
 
 protocol OneItemViewInput: AnyObject {
     func setFetchedData(itemInfo: OneItemInfo)
+    func showLoaderView()
+    func hideLoaderView()
 }
 
 protocol OneItemViewOutput: AnyObject {

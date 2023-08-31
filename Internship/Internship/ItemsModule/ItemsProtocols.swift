@@ -16,7 +16,9 @@ protocol ItemsModuleOutput: AnyObject {
 }
 
 protocol ItemsViewInput: AnyObject {
-    func printData(adv: [ItemInfo])
+    func setData(info: [ItemInfo])
+    func showLoaderView()
+    func hideLoaderView()
 }
 
 protocol ItemsViewOutput: AnyObject {

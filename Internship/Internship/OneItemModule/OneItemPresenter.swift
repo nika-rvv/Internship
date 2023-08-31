@@ -26,12 +26,14 @@ extension OneItemPresenter: OneItemModuleInput {
 
 extension OneItemPresenter: OneItemViewOutput {
     func getOneItemData() {
+        view?.showLoaderView()
         interactor.fetchOneItemData()
     }
 }
 
 extension OneItemPresenter: OneItemInteractorOutput {
     func loadData(info: OneItemInfo) {
+        view?.hideLoaderView()
         view?.setFetchedData(itemInfo: info)
     }
 }

@@ -11,16 +11,16 @@ import UIKit
 final class OneItemViewController: UIViewController {
 	private let output: OneItemViewOutput
     
-    let data = ["Смартфон Apple iPhone 12",
-                "55000 ₽",
-                "Москва",
-                "2023-08-16",
-                "Характеристики",
-                "Отличное состояние, последняя модель iPhone.",
-                "Каналы связи",
-                "example1@example.com",
-                "+7 (123) 456-7890",
-                "ул. Пушкина, д. 1"]
+//    let data = ["Смартфон Apple iPhone 12",
+//                "55000 ₽",
+//                "Москва",
+//                "2023-08-16",
+//                "Характеристики",
+//                "Отличное состояние, последняя модель iPhone.",
+//                "Каналы связи",
+//                "example1@example.com",
+//                "+7 (123) 456-7890",
+//                "ул. Пушкина, д. 1"]
     
     private let oneItemView = OneItemView()
 
@@ -56,9 +56,19 @@ private extension OneItemViewController {
 }
 
 extension OneItemViewController: OneItemViewInput {
+    func showLoaderView() {
+        oneItemView.isHidden = true
+        self.showLoader(animationName: JSONEnum.loadingAnimation.rawValue)
+    }
+    
     func setFetchedData(itemInfo: OneItemInfo) {
         print("fetched data:\(itemInfo)")
         oneItemView.configureViewWith(data: itemInfo)
+    }
+    
+    func hideLoaderView() {
+        self.hideLoader()
+        oneItemView.isHidden = false
     }
 }
 

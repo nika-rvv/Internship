@@ -61,9 +61,19 @@ private extension ItemsViewController {
 }
 
 extension ItemsViewController: ItemsViewInput {
-    func printData(adv: [ItemInfo]) {
-        print(adv)
-        itemsCollectionViewAdapter.configure(adv)
+    func setData(info: [ItemInfo]) {
+        print(info)
+        itemsCollectionViewAdapter.configure(info)
+    }
+    
+    func showLoaderView() {
+        itemsCollectionView.isHidden = true
+        self.showLoader(animationName: JSONEnum.loadingAnimation.rawValue)
+    }
+    
+    func hideLoaderView() {
+        itemsCollectionView.isHidden = false
+        self.hideLoader()
     }
 }
 
