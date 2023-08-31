@@ -39,8 +39,8 @@ final class ItemsViewController: UIViewController {
 
 private extension ItemsViewController {
     func setupViews() {
-        view.backgroundColor = .white
-        itemsCollectionView.backgroundColor = .white
+        view.backgroundColor = UIColor.mainBackgroundColor
+        itemsCollectionView.backgroundColor = UIColor.mainBackgroundColor
         itemsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         itemsCollectionView.register(cellType: ItemsCollectionViewCell.self)
         itemsCollectionView.showsVerticalScrollIndicator = false

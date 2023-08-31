@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = window else {
             return
         }
-        window.overrideUserInterfaceStyle = .light
+//        window.overrideUserInterfaceStyle = .light
         
         let itemsContainer = ItemsContainer.assemble(with: ItemsContext(window: window))
         let navigationController = UINavigationController(rootViewController: itemsContainer.viewController)

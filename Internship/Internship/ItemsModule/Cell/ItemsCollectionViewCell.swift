@@ -8,15 +8,6 @@
 import UIKit
 
 final class ItemsCollectionViewCell: UICollectionViewCell {
-//    private let itemStackView: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.axis = .vertical
-//        stackView.spacing = 4
-////        stackView.distribution = .fill
-//        return stackView
-//    }()
-    
     private let itemImage: KingfisherImage = {
         let image = KingfisherImage(placeHolderType: .item)
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +20,7 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
     private let itemTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.mainTextColor
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
@@ -38,7 +29,7 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
     private let itemPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.mainTextColor
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         return label
     }()
@@ -46,7 +37,7 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
     private let itemLocationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkGray
+        label.textColor = UIColor.secondaryTextColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         return label
     }()
@@ -54,7 +45,7 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
     private let itemCreationDateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .lightGray
+        label.textColor = UIColor.secondaryTextColor
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         return label
     }()

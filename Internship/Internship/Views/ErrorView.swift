@@ -25,7 +25,7 @@ final class ErrorView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = .red
+        label.textColor = UIColor.redColor
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -34,20 +34,20 @@ final class ErrorView: UIView {
     private let reloadButton: CustomButton = {
         let button = CustomButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .white
-        button.layer.borderColor = UIColor.red.cgColor
+        button.tintColor = UIColor.mainBackgroundColor
+        button.layer.borderColor = UIColor.redColor?.cgColor
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.setTitle("Перегрузить", for: .normal)
         button.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(UIColor.redColor, for: .normal)
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.mainBackgroundColor
         addViews()
         setupConstraints()
     }

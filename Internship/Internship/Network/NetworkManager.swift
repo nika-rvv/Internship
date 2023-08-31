@@ -36,7 +36,6 @@ class NetworkManager {
         } catch {
             return (nil, NetworkResponse.noConnection.rawValue)
         }
-        
     }
     
     func fetchItemData(with index: String) async -> (data: OneAdvertismentItem?, error: String?) {

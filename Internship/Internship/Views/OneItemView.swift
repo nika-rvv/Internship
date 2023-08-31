@@ -20,7 +20,7 @@ final class OneItemView: UIView {
         for value in 0..<10 {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.textColor = .black
+            label.textColor = UIColor.mainTextColor
             label.numberOfLines = 0
             labelViews.append(label)
         }
@@ -29,7 +29,7 @@ final class OneItemView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.mainBackgroundColor
         setupViews()
         setupLabelViews()
     }
@@ -80,14 +80,14 @@ private extension OneItemView {
         for value in 0..<10 {
             switch value {
             case 0:
-                labelViews[value].font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+                labelViews[value].font = UIFont.systemFont(ofSize: 20, weight: .semibold)
             case 1:
-                labelViews[value].font = UIFont.systemFont(ofSize: 18, weight: .medium)
+                labelViews[value].font = UIFont.systemFont(ofSize: 20, weight: .medium)
             case 2, 3:
-                labelViews[value].textColor = .darkGray
+                labelViews[value].textColor = UIColor.secondaryTextColor
                 labelViews[value].font = UIFont.systemFont(ofSize: 14, weight: .light)
             case 4, 6:
-                labelViews[value].font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+                labelViews[value].font = UIFont.systemFont(ofSize: 18, weight: .semibold)
             default:
                 labelViews[value].font = UIFont.systemFont(ofSize: 16, weight: .regular)
             }
@@ -103,7 +103,9 @@ extension OneItemView {
         labelViews[1].text = data.price
         labelViews[2].text = data.location
         labelViews[3].text = data.createdDate
+        labelViews[4].text = "Описание"
         labelViews[5].text = data.description
+        labelViews[6].text = "Контактная информация"
         labelViews[7].text = data.email
         labelViews[8].text = data.phoneNumber
         labelViews[9].text = data.address
