@@ -35,7 +35,7 @@ extension OneItemInteractor: OneItemInteractorInput {
             guard let data = adInfo?.data,
                   let itemData = dataConverter?.convertDataForOneItem(from: data) else {
                 await MainActor.run {
-                    output?.showEror(error: NetworkResponse.noData.rawValue)
+                    output?.showEror(error: NetworkResponse.noConnection.rawValue)
                 }
                 return
             }

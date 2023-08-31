@@ -112,6 +112,7 @@ extension ItemsViewController: ItemsViewInput {
     
     func showErrorAlert(error: String) {
         itemsCollectionView.isHidden = true
+        customNavBar.isHidden = true
         errorView.isHidden = false
         errorView.configureView(with: error)
     }
