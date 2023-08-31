@@ -34,7 +34,7 @@ class NetworkManager {
             let advertisment = try JSONDecoder().decode(Advertisment.self, from: data)
             return (advertisment, nil)
         } catch {
-            return (nil, NetworkResponse.unableToDecode.rawValue)
+            return (nil, NetworkResponse.noConnection.rawValue)
         }
         
     }
@@ -49,8 +49,10 @@ class NetworkManager {
         guard let urlResult = url else {
             return (nil, NetworkResponse.wrongURL.rawValue)
         }
+        
+        let urlSession = URLSession(configuration: .ephemeral)
     
-        guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
+        guard let data = try? await urlSession.data(from: urlResult).0 else {
             return (nil, NetworkResponse.noConnection.rawValue)
         }
 
@@ -59,7 +61,7 @@ class NetworkManager {
             let info = try JSONDecoder().decode(OneAdvertismentItem.self, from: data)
             return (info, nil)
         } catch {
-            return (nil, NetworkResponse.unableToDecode.rawValue)
+            return (nil, NetworkResponse.noConnection.rawValue)
         }
     }
 }
