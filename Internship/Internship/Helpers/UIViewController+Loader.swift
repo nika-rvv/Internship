@@ -27,12 +27,4 @@ extension UIViewController {
         let loaderView = self.view.subviews.first { $0 is LoaderView }
         loaderView?.removeFromSuperview()
     }
-    
-    func showLoaderIfNeeded(isLoading: Bool, animationName: String) {
-        if isLoading {
-            showLoader(animationName: animationName)
-        } else {
-            hideLoader()
-        }
-    }
 }

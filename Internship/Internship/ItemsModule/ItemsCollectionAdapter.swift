@@ -100,8 +100,6 @@ private extension ItemCollectionAdapter {
 
 extension ItemCollectionAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped \(indexPath.item)")
-        
         didTapOnItemAction?(itemsInfo[indexPath.item].id)
     }
     

@@ -62,7 +62,6 @@ private extension ItemsViewController {
 
 extension ItemsViewController: ItemsViewInput {
     func setData(info: [ItemInfo]) {
-        print(info)
         itemsCollectionViewAdapter.configure(info)
     }
     
@@ -74,6 +73,14 @@ extension ItemsViewController: ItemsViewInput {
     func hideLoaderView() {
         itemsCollectionView.isHidden = false
         self.hideLoader()
+    }
+    
+    func showErrorAlert(error: String) {
+        let alert = UIAlertController(title: "Ошибка",
+                                      message: "\(error)",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        self.present(alert, animated: true)
     }
 }
 

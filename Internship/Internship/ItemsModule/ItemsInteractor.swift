@@ -34,8 +34,8 @@ extension ItemsInteractor: ItemsInteractorInput {
         Task {
             let adInfo = await itemsNetworkManager?.fetchAdvertisments()
             
-            if adInfo?.error != nil {
-                print("error")
+            if let responseError = adInfo?.error {
+                output?.showEror(error: responseError)
             }
             
             guard let data = adInfo?.adv  else {

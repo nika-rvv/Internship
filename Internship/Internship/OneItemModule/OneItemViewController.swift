@@ -62,13 +62,20 @@ extension OneItemViewController: OneItemViewInput {
     }
     
     func setFetchedData(itemInfo: OneItemInfo) {
-        print("fetched data:\(itemInfo)")
         oneItemView.configureViewWith(data: itemInfo)
     }
     
     func hideLoaderView() {
         self.hideLoader()
         oneItemView.isHidden = false
+    }
+    
+    func showErrorAlert(error: String) {
+        let alert = UIAlertController(title: "Ошибка",
+                                      message: "\(error)",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        self.present(alert, animated: true)
     }
 }
 

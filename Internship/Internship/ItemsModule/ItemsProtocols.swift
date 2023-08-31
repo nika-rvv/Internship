@@ -19,6 +19,7 @@ protocol ItemsViewInput: AnyObject {
     func setData(info: [ItemInfo])
     func showLoaderView()
     func hideLoaderView()
+    func showErrorAlert(error: String)
 }
 
 protocol ItemsViewOutput: AnyObject {
@@ -32,6 +33,7 @@ protocol ItemsInteractorInput: AnyObject {
 
 protocol ItemsInteractorOutput: AnyObject {
     func setFetchedData(itemsInfo: [ItemInfo])
+    func showEror(error: String)
 }
 
 protocol ItemsRouterInput: AnyObject {

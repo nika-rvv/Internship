@@ -36,6 +36,11 @@ extension ItemsPresenter: ItemsViewOutput {
 }
 
 extension ItemsPresenter: ItemsInteractorOutput {
+    func showEror(error: String) {
+        view?.hideLoaderView()
+        view?.showErrorAlert(error: error)
+    }
+    
     func setFetchedData(itemsInfo: [ItemInfo]) {
         view?.setData(info: itemsInfo)
         view?.hideLoaderView()

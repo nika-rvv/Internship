@@ -32,6 +32,11 @@ extension OneItemPresenter: OneItemViewOutput {
 }
 
 extension OneItemPresenter: OneItemInteractorOutput {
+    func showEror(error: String) {
+        view?.hideLoaderView()
+        view?.showErrorAlert(error: error)
+    }
+    
     func loadData(info: OneItemInfo) {
         view?.hideLoaderView()
         view?.setFetchedData(itemInfo: info)

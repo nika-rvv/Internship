@@ -20,11 +20,11 @@ class NetworkManager {
             .build()
         
         guard let urlResult = url else {
-            return (nil, "no url")
+            return (nil, NetworkResponse.wrongURL.rawValue)
         }
     
         guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
-            return (nil, "error")
+            return (nil, NetworkResponse.noData.rawValue)
         }
 
 
@@ -32,7 +32,7 @@ class NetworkManager {
             let advertisment = try JSONDecoder().decode(Advertisment.self, from: data)
             return (advertisment, nil)
         } catch {
-            return (nil, "error")
+            return (nil, NetworkResponse.unableToDecode.rawValue)
         }
     }
     
@@ -44,11 +44,11 @@ class NetworkManager {
             .build()
         
         guard let urlResult = url else {
-            return (nil, "no url")
+            return (nil, NetworkResponse.wrongURL.rawValue)
         }
     
         guard let data = try? await URLSession.shared.data(from: urlResult).0 else {
-            return (nil, "error")
+            return (nil, NetworkResponse.noData.rawValue)
         }
 
 
@@ -56,7 +56,7 @@ class NetworkManager {
             let info = try JSONDecoder().decode(OneAdvertismentItem.self, from: data)
             return (info, nil)
         } catch {
-            return (nil, "error")
+            return (nil, NetworkResponse.unableToDecode.rawValue)
         }
     }
 }

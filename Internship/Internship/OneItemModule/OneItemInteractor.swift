@@ -26,12 +26,12 @@ extension OneItemInteractor: OneItemInteractorInput {
         Task {
             let adInfo = await itemNetworkManager?.fetchItemData(with: itemId)
             
-            if adInfo?.error != nil {
-                print("error")
+            if let responseError = adInfo?.error{
+                output?.showEror(error: responseError)
             }
             
-            guard let data = adInfo?.data, let itemData = dataConverter?.convertDataForOneItem(from: data) else {
-                
+            guard let data = adInfo?.data,
+                  let itemData = dataConverter?.convertDataForOneItem(from: data) else {
                 return
             }
             
