@@ -72,6 +72,10 @@ private extension ItemsViewController {
             errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        errorView.setReloadAction {
+            self.output.loadData()
+        }
     }
 }
 
@@ -97,11 +101,6 @@ extension ItemsViewController: ItemsViewInput {
         itemsCollectionView.isHidden = true
         errorView.isHidden = false
         errorView.configureView(with: error)
-//        let alert = UIAlertController(title: "Ошибка",
-//                                      message: "\(error)",
-//                                      preferredStyle: .actionSheet)
-//        alert.addAction(UIAlertAction(title: "ОК", style: .default))
-//        self.present(alert, animated: true)
     }
 }
 

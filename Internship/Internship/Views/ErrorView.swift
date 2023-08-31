@@ -9,6 +9,10 @@ import UIKit
 import Lottie
 
 final class ErrorView: UIView {
+    typealias ReloadClosure = () -> Void
+    
+    private var reloadAction: ReloadClosure?
+    
     private let errorAnimation: LottieAnimationView = {
         let animation = LottieAnimationView()
         animation.animation = LottieAnimation.named(JSONEnum.errorAnimation.rawValue)
@@ -27,8 +31,8 @@ final class ErrorView: UIView {
         return label
     }()
     
-    private let reloadButton: UIButton = {
-        let button = UIButton()
+    private let reloadButton: CustomButton = {
+        let button = CustomButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .white
         button.layer.borderColor = UIColor.red.cgColor
@@ -36,6 +40,7 @@ final class ErrorView: UIView {
         button.layer.cornerRadius = 4
         button.clipsToBounds = true
         button.setTitle("Перегрузить", for: .normal)
+        button.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
         button.setTitleColor(.red, for: .normal)
         return button
     }()
@@ -76,11 +81,20 @@ private extension ErrorView {
             reloadButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
+    
+    @objc
+    func reloadButtonTapped() {
+        reloadAction?()
+    }
 }
 
 extension ErrorView {
     func configureView(with error: String) {
         errorDescriptionLabel.text = error
         errorAnimation.play()
+    }
+    
+    func setReloadAction(_ action: @escaping ReloadClosure) {
+        self.reloadAction = action
     }
 }
