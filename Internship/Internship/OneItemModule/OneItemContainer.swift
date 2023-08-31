@@ -22,6 +22,7 @@ final class OneItemContainer {
         let presenter = OneItemPresenter(router: router, interactor: interactor)
 		let viewController = OneItemViewController(output: presenter)
 
+        router.viewController = viewController
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput

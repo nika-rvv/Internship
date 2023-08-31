@@ -29,6 +29,10 @@ extension OneItemPresenter: OneItemViewOutput {
         view?.showLoaderView()
         interactor.fetchOneItemData()
     }
+    
+    func backToAllItems() {
+        router.backButtonTapped()
+    }
 }
 
 extension OneItemPresenter: OneItemInteractorOutput {

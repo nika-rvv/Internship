@@ -14,6 +14,12 @@ final class OneItemViewController: UIViewController {
     private let oneItemView = OneItemView()
     
     private let errorView = ErrorView()
+    
+    private let customNavBar: NavigationBarView = {
+        let navBar = NavigationBarView()
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        return navBar
+    }()
 
     init(output: OneItemViewOutput) {
         self.output = output
@@ -27,9 +33,11 @@ final class OneItemViewController: UIViewController {
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         view.backgroundColor = UIColor.mainBackgroundColor
         setupViews()
         setupErrorView()
+        setupActions()
         output.getOneItemData()
 	}
 }
@@ -37,9 +45,16 @@ final class OneItemViewController: UIViewController {
 private extension OneItemViewController {
     func setupViews() {
         view.addSubview(oneItemView)
+        view.addSubview(customNavBar)
+    
         oneItemView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            oneItemView.topAnchor.constraint(equalTo: view.topAnchor),
+            customNavBar.topAnchor.constraint(equalTo: view.topAnchor),
+            customNavBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customNavBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customNavBar.heightAnchor.constraint(equalToConstant: 88),
+            
+            oneItemView.topAnchor.constraint(equalTo: customNavBar.bottomAnchor),
             oneItemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             oneItemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             oneItemView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -61,6 +76,12 @@ private extension OneItemViewController {
             self?.output.getOneItemData()
         }
     }
+    
+    func setupActions() {
+        customNavBar.setCloseAction { [weak self] in
+            self?.output.backToAllItems()
+        }
+    }
 }
 
 extension OneItemViewController: OneItemViewInput {
@@ -72,6 +93,7 @@ extension OneItemViewController: OneItemViewInput {
     
     func setFetchedData(itemInfo: OneItemInfo) {
         errorView.isHidden = true
+        customNavBar.setupConfigForOneItemScreen(with: itemInfo.title)
         oneItemView.configureViewWith(data: itemInfo)
     }
     

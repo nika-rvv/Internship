@@ -24,6 +24,7 @@ protocol OneItemViewInput: AnyObject {
 
 protocol OneItemViewOutput: AnyObject {
     func getOneItemData()
+    func backToAllItems()
 }
 
 protocol OneItemInteractorInput: AnyObject {
@@ -36,4 +37,5 @@ protocol OneItemInteractorOutput: AnyObject {
 }
 
 protocol OneItemRouterInput: AnyObject {
+    func backButtonTapped()
 }

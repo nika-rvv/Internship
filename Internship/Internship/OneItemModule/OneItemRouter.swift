@@ -9,7 +9,11 @@
 import UIKit
 
 final class OneItemRouter {
+    var viewController: UIViewController?
 }
 
 extension OneItemRouter: OneItemRouterInput {
+    func backButtonTapped() {
+        self.viewController?.navigationController?.popViewController(animated: true)
+    }
 }

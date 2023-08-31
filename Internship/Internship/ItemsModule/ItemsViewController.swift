@@ -11,6 +11,12 @@ import UIKit
 final class ItemsViewController: UIViewController {
 	private let output: ItemsViewOutput
     
+    private let customNavBar: NavigationBarView = {
+        let navBar = NavigationBarView()
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        return navBar
+    }()
+    
     private lazy var itemsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
     
     private lazy var itemsCollectionViewAdapter =  ItemCollectionAdapter(itemsCollectionView)
@@ -45,11 +51,18 @@ private extension ItemsViewController {
         itemsCollectionView.register(cellType: ItemsCollectionViewCell.self)
         itemsCollectionView.showsVerticalScrollIndicator = false
         view.addSubview(itemsCollectionView)
+        view.addSubview(customNavBar)
+        customNavBar.setConfigForItemsScreen()
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            itemsCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            customNavBar.topAnchor.constraint(equalTo: view.topAnchor),
+            customNavBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customNavBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customNavBar.heightAnchor.constraint(equalToConstant: 88),
+            
+            itemsCollectionView.topAnchor.constraint(equalTo: customNavBar.bottomAnchor),
             itemsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             itemsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             itemsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
